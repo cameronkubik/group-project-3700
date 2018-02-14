@@ -1,2 +1,4 @@
 # group-project-3700
-Team repository for Comp 3700, Software Modeling &amp; Design, group project
+Team repository for Software Modeling &amp; Design, group project.
+
+All files related to team activity should be included. 

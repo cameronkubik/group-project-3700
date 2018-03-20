@@ -1,0 +1,9 @@
+'Transaction State Model
+
+@startuml
+[*] --> Processing : initiate transaction
+Processing --> Denied : insufficient funds
+Denied --> Processing : administrative action
+Processing --> Approved : funds available & accepted
+Approved --> [*] : transaction complete
+@enduml

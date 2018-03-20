@@ -1,0 +1,33 @@
+Create An Account
+  - creating an account in CashStash
+Logging In
+  - logging in to CashStash (displays a transaction overview page or budget or cash flow based on profile setting) 
+Logging Out
+  - logging out to CashStash (will check to make sure everything is saved first)
+Delete Account
+  - get rid of all data related to your account in CashStash
+Manage Profile
+  - users can edit their profile information such as password, address, phone number, default login screen, etc.
+Link External Account 
+  - connect CashStash account to your bank account and other things to sync transactions
+  
+Create Transaction
+  - manually enter transaction details
+Schedule Transaction 
+  - manually create a transaction that will reoccur at a defined frequency
+Generate Budget Report
+  - user defines expense categories and sets a percentage or fixed amount of their income towards those categories
+  - a report is then generated breaking down their monthly income based on these settings
+Check Credit Score
+  - user can check their current credit score by querying an external service
+Calculate Cash Flow
+  - generates a report comparing income and expenses for a given time period
+Compare Budget to Cash Flow (trying to think of a good name) 
+  - this will basically compare your budget to your cash flow to see how well they match up (if you've spent too much or managed to save more) 
+
+Export Data
+  - creates an excel file containing all of the transactions in your account
+Print Data
+  - prints the current feature (budget, cash flow, etc.)
+  
+  That's 14 cases.. still need to think of one more. 

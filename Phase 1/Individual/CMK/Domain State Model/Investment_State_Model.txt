@@ -1,0 +1,14 @@
+'Investment Portfolio State Model'
+@startuml
+[*] --> Open : open portfolio
+Open --> Active : purchase stock(s)
+
+Active --> Open : sell all stocks
+Active --> Profitable : stock value increasing
+Active --> Liable : stock value decreasing
+
+Open --> Closed : customer request to cash out
+
+Closed --> [*] : portfolio terminated
+
+@enduml

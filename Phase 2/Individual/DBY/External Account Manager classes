@@ -1,0 +1,19 @@
+External Account Manager classes:
+
+Service Control
+Transaction Control
+Database Manager
+Financial Service
+Credit Check Service
+[Database] Financial Account Database
+[Database] Transactions Database
+[Database] User Account Database
+Credit Score Prompt
+
+credentials
+currentUser
+identity
+creditScore
+data (transactions from bank)
+oldTransactions (set of Transactions?)
+newtransactions (set of Transactions?)

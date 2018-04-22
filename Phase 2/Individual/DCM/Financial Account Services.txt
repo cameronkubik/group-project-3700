@@ -1,0 +1,34 @@
+public static accessKey getAccess(accinfo){
+	boolean responseRecieved = ping FinancialAccount;
+	if (responseRecieved == false){
+		print error;
+		return;
+	}
+	else {
+		if (send accinfo == wrong_info){
+			error;
+		}
+		request accessKey;
+		recieve accessKey;
+		return accessKey;
+	}
+}
+
+public static json_data getTransactions(accinfo,accessKey) {
+	boolean responseRecieved = ping FinancialAccount;
+	if (responseRecieved == false){
+		print error;
+		return;
+	}
+	else {
+		if (send accinfo == wrong_info){
+			error;
+		}
+		if (send access key == denied){
+			error;
+		}
+		request json_data;
+		recieve json_data;
+		return json_data;
+	}
+}

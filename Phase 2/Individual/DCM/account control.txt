@@ -1,0 +1,41 @@
+public static Account getUser() {
+	return currentUser;
+}
+
+public static void setUser(String username, String password) {
+	if (DatabaseManager.findAccount(username, password) == null){
+		print error;
+		return;
+	}
+	else{
+		currentUser = DatabaseManager.findAccount(username, password);
+	}
+}
+
+private static void deleteAccount(String username, String password) {
+	if (DatabaseManager.findAccount(username, password) == null){
+		print error;
+		return;
+	}
+	else if (currentUser == DatabaseManager.findAccount(username, password)) {
+		DatabaseManager.deleteAccount(username,password);
+		SessionControl.logout();
+		DatabaseManager.deleteAccount(username,password);
+	}
+	else if (currentUser != DatabaseManager.findAccount(username, password)) {
+		print error;
+	}
+}
+
+private static void createAccount(String username, String password){
+	new Account newAccount = Account(username, password);
+	if (new == DatabaseManager.findAccount(username, password)) {
+		print error;
+		return;
+	} 
+	else {
+		DatabaseManager.addAccount(newAccount);
+		SessionManager.login(username,password);
+	}
+}
+

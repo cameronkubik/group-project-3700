@@ -1,0 +1,28 @@
+Invariables:
+	AccountControl exists
+
+Method pseudocode & Pre/postconditions:
+
+Preconditions: 		AccountControl.CurrentUser == null
+
+login(){
+	prompt user ("input username and password");
+	AccountControl.setUser(username,password);
+	if (CurrentUser!=null){
+		new HomeScreen;
+	}
+	else {error;}
+}
+
+PostConditions: 	AccountControl.CurrentUser !=null
+			
+
+
+Preconditions: 		AccountControl.CurrentUser != null
+
+logout(){
+	AccountControl.CurrentUser = null;
+	new LoginScreen;
+}
+
+PostConditions: 	AccountControl.CurrentUser == null

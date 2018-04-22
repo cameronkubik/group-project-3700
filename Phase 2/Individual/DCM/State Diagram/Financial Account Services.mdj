@@ -459,7 +459,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "@getAcccess(accinfo)",
+											"text": "@getAccess(accinfo)",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -1851,7 +1851,7 @@
 									},
 									"edgePosition": 1,
 									"underline": false,
-									"text": "responseRecieved == false",
+									"text": "responseReceived == false",
 									"horizontalAlignment": 2,
 									"verticalAlignment": 5,
 									"wordWrap": false
@@ -2299,7 +2299,7 @@
 											"height": 39,
 											"autoResize": false,
 											"underline": false,
-											"text": "Recieving Account Authorization",
+											"text": "Receiving Account Authorization",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": true
@@ -2982,7 +2982,7 @@
 									},
 									"edgePosition": 1,
 									"underline": false,
-									"text": "responseRecieved == true",
+									"text": "responseReceived == true",
 									"horizontalAlignment": 2,
 									"verticalAlignment": 5,
 									"wordWrap": true
@@ -3851,7 +3851,7 @@
 											"height": 26,
 											"autoResize": false,
 											"underline": false,
-											"text": "Recieved transactions",
+											"text": "Received transactions",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": true
@@ -4113,7 +4113,7 @@
 									},
 									"edgePosition": 1,
 									"underline": false,
-									"text": "responseRecieved == true",
+									"text": "responseReceived == true",
 									"horizontalAlignment": 2,
 									"verticalAlignment": 5,
 									"wordWrap": true
@@ -6460,7 +6460,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
 					},
-					"name": "@getAcccess(accinfo)",
+					"name": "@getAccess(accinfo)",
 					"ownedElements": [
 						{
 							"_type": "UMLAssociation",
@@ -6558,7 +6558,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFi7drKy8z8d8w="
 							},
-							"name": "responseRecieved == true",
+							"name": "responseReceived == true",
 							"end1": {
 								"_type": "UMLAssociationEnd",
 								"_id": "AAAAAAFi7eWAZeYx/OM=",
@@ -6709,7 +6709,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFi7dtr1s0rhzg="
 							},
-							"name": "responseRecieved == true",
+							"name": "responseReceived == true",
 							"end1": {
 								"_type": "UMLAssociationEnd",
 								"_id": "AAAAAAFi7edSKe9PC+I=",
@@ -6827,7 +6827,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFi7d2Yxs2L9D0="
 							},
-							"name": "responseRecieved == false",
+							"name": "responseReceived == false",
 							"end1": {
 								"_type": "UMLAssociationEnd",
 								"_id": "AAAAAAFi7d+rdtXXDNA=",
@@ -6880,7 +6880,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
 					},
-					"name": "Recieving Account Authorization",
+					"name": "Receiving Account Authorization",
 					"ownedElements": [
 						{
 							"_type": "UMLAssociation",
@@ -6940,7 +6940,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
 					},
-					"name": "Recieved transactions",
+					"name": "Received transactions",
 					"ownedElements": [
 						{
 							"_type": "UMLAssociation",

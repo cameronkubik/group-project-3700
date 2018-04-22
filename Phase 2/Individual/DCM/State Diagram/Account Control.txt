@@ -1,0 +1,70 @@
+Invariables:
+	ServicesControl exists
+	DatabaseManager exists
+
+Method pseudocode & pre/postconditions:
+
+preconditions: 		N/A
+
+getUser() {
+	return currentUser;
+}
+
+postconditions: 	N/A
+
+
+
+preconditions: 		currentUser == null
+
+setUser(username, password) {
+	if (DatabaseManager.findAccount(username, password) == null){
+		print error;
+		return;
+	}
+	else{
+		currentUser = DatabaseManager.findAccount(username, password);
+	}
+}
+
+postconditions: 	currentUser.getUserName() == username
+			currentUser.getPassword() == password
+
+
+
+preconditions:		currentUser != null
+
+deleteAccount(username, password) {
+	if (DatabaseManager.findAccount(username, password) == null){
+		print error;
+		return;
+	}
+	else if (currentUser == DatabaseManager.findAccount(username, password)) {
+		DatabaseManager.deleteAccount(username,password);
+		SessionControl.logout();
+		DatabaseManager.deleteAccount(username,password);
+	}
+	else if (currentUser != DatabaseManager.findAccount(username, password)) {
+		print error;
+	}
+}
+
+postconditions: 	currentUser == null;
+			DatabaseManager.findAccount(username, password) == null;
+
+
+
+preconditions: currentUser == null
+
+createAccount(username, password){
+	new Account newAccount = Account(username, password);
+	if (new == DatabaseManager.findAccount(username, password)) {
+		print error;
+		return;
+	} 
+	else {
+		DatabaseManager.addAccount(newAccount);
+		SessionManager.login(username,password);
+	}
+}
+
+postconditions: 	DatabaseManager.findAccount(username, password) == newAccount;

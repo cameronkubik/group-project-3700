@@ -1,4 +1,12 @@
-public static accessKey getAccess(accinfo){
+Invariables: 
+	AccountControl.currentUser != null
+
+Method Pseudocode & Pre/postconditions:
+
+
+Preconditions: 		N/A
+
+getAccess(accinfo){
 	boolean responseRecieved = ping FinancialAccount;
 	if (responseRecieved == false){
 		print error;
@@ -14,7 +22,13 @@ public static accessKey getAccess(accinfo){
 	}
 }
 
-public static json_data getTransactions(accinfo,accessKey) {
+Postconditions: 	N/A
+
+
+
+Preconditions: 		N/A
+
+getTransactions(accinfo, accessKey) {
 	boolean responseRecieved = ping FinancialAccount;
 	if (responseRecieved == false){
 		print error;
@@ -32,3 +46,5 @@ public static json_data getTransactions(accinfo,accessKey) {
 		return json_data;
 	}
 }
+
+Postconditions: 	N/A

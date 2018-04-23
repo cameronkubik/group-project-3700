@@ -1,8 +1,22 @@
-public static Account getUser() {
+Invariables:
+	ServicesControl exists
+	DatabaseManager exists
+
+Method pseudocode & pre/postconditions:
+
+preconditions: 		N/A
+
+getUser() {
 	return currentUser;
 }
 
-public static void setUser(String username, String password) {
+postconditions: 	N/A
+
+
+
+preconditions: 		currentUser == null
+
+setUser(username, password) {
 	if (DatabaseManager.findAccount(username, password) == null){
 		print error;
 		return;
@@ -12,7 +26,14 @@ public static void setUser(String username, String password) {
 	}
 }
 
-private static void deleteAccount(String username, String password) {
+postconditions: 	currentUser.getUserName() == username
+			currentUser.getPassword() == password
+
+
+
+preconditions:		currentUser != null
+
+deleteAccount(username, password) {
 	if (DatabaseManager.findAccount(username, password) == null){
 		print error;
 		return;
@@ -27,7 +48,14 @@ private static void deleteAccount(String username, String password) {
 	}
 }
 
-private static void createAccount(String username, String password){
+postconditions: 	currentUser == null;
+			DatabaseManager.findAccount(username, password) == null;
+
+
+
+preconditions: currentUser == null
+
+createAccount(username, password){
 	new Account newAccount = Account(username, password);
 	if (new == DatabaseManager.findAccount(username, password)) {
 		print error;
@@ -39,3 +67,4 @@ private static void createAccount(String username, String password){
 	}
 }
 
+postconditions: 	DatabaseManager.findAccount(username, password) == newAccount;

@@ -1,3 +1,6 @@
+Class: DataControl
+
+OCL statements:
 context DataControl inv: AccountControl.currentUser != null
 context DataControl::getTransactions() pre: self.saveLocation->isValid || self.printSettings->isValid
 context DataControl::getTransactions() post: File.transactions->count >= 0
@@ -6,20 +9,19 @@ context DataControl::saveFile(transactions) post: OS.files->includes(File)
 context DataControl::compilePrintFile() pre: File.transactions->count > 0
 context DataControl::compilePrintFile() post: OS.printQueue->includes(File)
 
+Control flow pseudocode:
 getTransactions() {
 	if (saveLocation.isValid or printSettings.isValid)
 		pass control to TransactionControl to retrieve transactions
 	else
 		error msg/request correct settings
 }
-
 saveFile(transactions) {
 	if (transactions.count > 0)
 		OS.requestSave(location, file)
 	else
 		alert "no transactions to write"
 }
-
 compilePrintFile() {
 	if (transactions.count > 0)
 		send file to print service
@@ -27,39 +29,38 @@ compilePrintFile() {
 		alert "no transactions to print"
 }
 
+
+
+Class: ServicesControl
+
+OCL statements:
 context ServicesControl inv: AccountControl.currentUser != null
-context ServicesControl::loadIdentity() pre: N/A
 context ServicesControl::loadIdentity() post: self.Identity() != null
 context ServicesControl::requestScore() pre: self.Identity() != null
 context ServicesControl::requestScore() post: self.Score() != null
-context ServicesControl::getLinkedAccounts() pre: N/A
-context ServicesControl::getLinkedAccounts() post: N/A
 context ServicesControl::requestAccountTransactions() pre: self.Credentials() != null
 context ServicesControl::requestAccountTransactions() post: self.transactions->count >= 0
 context ServicesControl::findNewTransactions() pre: self.transactions->count > 0
 context ServicesControl::findNewTransactions() post: DatabaseManager.getTransactions(currentUser)->count == self.transactions->count
 
+Control flow pseudocode:
 loadIdentity() {
 	if ()
 		DatabaseManager.getIdentity(currentUser)
 	else
 		error "Identity could not be retrieved"
 }
-
 requestScore(identity) {
 	if (identity != null)
 		CreditCheckService.getScore(identity)
 }
-
 getLinkedAccounts() {
 	DatabaseManager.getLinkedAccounts(currentUser)
 }
-
 requestAccountTransactions() {
 	if (credentials == null)
 		FinancialAccountService.getTransactions(credentials)
 }
-
 findNewTransactions() {
 	if (transactions.count > 0) {
 		for each transaction {
@@ -67,4 +68,124 @@ findNewTransactions() {
 				DatabaseManager.saveTransaction(transaction)
 		}
 	}
+}
+
+
+
+Class: AccountControl
+
+OCL statements:
+context AccountControl inv: ServicesControl->exists
+context AccountControl inv: DatabaseManager->exists
+context AccountControl::setUser(username, password) pre: currentUser == null
+context AccountControl::setUser(username, password) post: currentUser.getUserName() == username && currentUser.getPassword() == password
+context AccountControl::deleteAccount(username, password) pre: currentUser != null
+context AccountControl::deleteAccount(username, password) post: currentUser == null && DatabaseManager.findAccount(username, password) == null
+context AccountControl::createAccount(username, password) pre: currentUser == null
+context AccountControl::createAccount(username, password) post: DatabaseManager.findAccount(username, password) == newAccount
+
+Control flow pseudocode:
+getUser() {
+	return currentUser;
+}
+setUser(username, password) {
+	if (DatabaseManager.findAccount(username, password) == null){
+		print error;
+		return;
+	}
+	else{
+		currentUser = DatabaseManager.findAccount(username, password);
+	}
+}	
+deleteAccount(username, password) {
+	if (DatabaseManager.findAccount(username, password) == null){
+		print error;
+		return;
+	}
+	else if (currentUser == DatabaseManager.findAccount(username, password)) {
+		DatabaseManager.deleteAccount(username,password);
+		SessionControl.logout();
+		DatabaseManager.deleteAccount(username,password);
+	}
+	else if (currentUser != DatabaseManager.findAccount(username, password)) {
+		print error;
+	}
+}
+createAccount(username, password){
+	new Account newAccount = Account(username, password);
+	if (new == DatabaseManager.findAccount(username, password)) {
+		print error;
+		return;
+	} 
+	else {
+		DatabaseManager.addAccount(newAccount);
+		SessionManager.login(username,password);
+	}
+}
+
+
+
+Class: FinancialAccountService
+
+OCL statements:
+context FinancialAccountService inv: AccountControl.currentUser != null
+
+Control flow pseudocode:
+getAccess(accinfo){
+	boolean responseRecieved = ping FinancialAccount;
+	if (responseRecieved == false){
+		print error;
+		return;
+	}
+	else {
+		if (send accinfo == wrong_info){
+			error;
+		}
+		request accessKey;
+		recieve accessKey;
+		return accessKey;
+	}
+}
+getTransactions(accinfo, accessKey) {
+	boolean responseRecieved = ping FinancialAccount;
+	if (responseRecieved == false){
+		print error;
+		return;
+	}
+	else {
+		if (send accinfo == wrong_info){
+			error;
+		}
+		if (send access key == denied){
+			error;
+		}
+		request json_data;
+		recieve json_data;
+		return json_data;
+	}
+}
+
+
+
+Class: SessionControl
+
+OCL statements:
+context SessionControl inv:	AccountControl->exists
+context SessionControl::login() pre: AccountControl.CurrentUser == null
+context SessionControl::login() post: AccountControl.CurrentUser !=null
+context SessionControl::logout() pre: AccountControl.CurrentUser != null
+context SessionControl::logout() post: AccountControl.CurrentUser == null
+
+Control flow pseudocode:
+login(){
+	prompt user ("input username and password");
+	AccountControl.setUser(username,password);
+	if (CurrentUser!=null){
+		new HomeScreen;
+	}
+	else {error;}
+}
+logout(){
+	AccountControl.CurrentUser = null;
+	new LoginScreen;
 }

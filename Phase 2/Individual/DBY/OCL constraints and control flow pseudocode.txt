@@ -45,9 +45,8 @@ context ServicesControl::findNewTransactions() post: DatabaseManager.getTransact
 
 Control flow pseudocode:
 loadIdentity() {
-	if ()
-		DatabaseManager.getIdentity(currentUser)
-	else
+	DatabaseManager.getIdentity(currentUser)
+	if (identity == null)
 		error "Identity could not be retrieved"
 }
 requestScore(identity) {

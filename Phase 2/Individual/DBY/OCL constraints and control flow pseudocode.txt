@@ -1,0 +1,70 @@
+context DataControl inv: AccountControl.currentUser != null
+context DataControl::getTransactions() pre: self.saveLocation->isValid || self.printSettings->isValid
+context DataControl::getTransactions() post: File.transactions->count >= 0
+context DataControl::saveFile(transactions) pre: File.transactions->count > 0
+context DataControl::saveFile(transactions) post: OS.files->includes(File)
+context DataControl::compilePrintFile() pre: File.transactions->count > 0
+context DataControl::compilePrintFile() post: OS.printQueue->includes(File)
+
+getTransactions() {
+	if (saveLocation.isValid or printSettings.isValid)
+		pass control to TransactionControl to retrieve transactions
+	else
+		error msg/request correct settings
+}
+
+saveFile(transactions) {
+	if (transactions.count > 0)
+		OS.requestSave(location, file)
+	else
+		alert "no transactions to write"
+}
+
+compilePrintFile() {
+	if (transactions.count > 0)
+		send file to print service
+	else
+		alert "no transactions to print"
+}
+
+context ServicesControl inv: AccountControl.currentUser != null
+context ServicesControl::loadIdentity() pre: N/A
+context ServicesControl::loadIdentity() post: self.Identity() != null
+context ServicesControl::requestScore() pre: self.Identity() != null
+context ServicesControl::requestScore() post: self.Score() != null
+context ServicesControl::getLinkedAccounts() pre: N/A
+context ServicesControl::getLinkedAccounts() post: N/A
+context ServicesControl::requestAccountTransactions() pre: self.Credentials() != null
+context ServicesControl::requestAccountTransactions() post: self.transactions->count >= 0
+context ServicesControl::findNewTransactions() pre: self.transactions->count > 0
+context ServicesControl::findNewTransactions() post: DatabaseManager.getTransactions(currentUser)->count == self.transactions->count
+
+loadIdentity() {
+	if ()
+		DatabaseManager.getIdentity(currentUser)
+	else
+		error "Identity could not be retrieved"
+}
+
+requestScore(identity) {
+	if (identity != null)
+		CreditCheckService.getScore(identity)
+}
+
+getLinkedAccounts() {
+	DatabaseManager.getLinkedAccounts(currentUser)
+}
+
+requestAccountTransactions() {
+	if (credentials == null)
+		FinancialAccountService.getTransactions(credentials)
+}
+
+findNewTransactions() {
+	if (transactions.count > 0) {
+		for each transaction {
+			if (transaction not in DatabaseManager.getTransactions())
+				DatabaseManager.saveTransaction(transaction)
+		}
+	}
+}

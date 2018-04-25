@@ -7,6 +7,8 @@ public class Main {
     public static boolean devMode = true;
 
     public static void main(String[] args) {
-        Printer.pr("Welcome to Cash Stash!\n");
+        Printer.displayOpening();
+        AccountControl.init();
+        Printer.displayClosing();
     }
 }

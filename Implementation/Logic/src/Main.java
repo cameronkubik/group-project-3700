@@ -2,6 +2,8 @@
 // Date: April 24, 2018
 // Cash Stash, Financial Management Application
 
+import Printer;
+
 public class Main {
     // Variable to easily toggle debug features
     public static boolean devMode = true;

@@ -30,15 +30,9 @@ public class Printer {
         pr("*******************");
     }
 
-    public static String query(String prompt, java.lang.Object type) {
+    public static String query(String prompt) {
         pr(prompt);
-        switch(type) {
-            case java.lang.Integer:
-                return userInput.nextInt();
-            case java.lang.Float:
-                return userInput.nextFloat();
-            default: 
-                return userInput.nextLine();
-        }
+        return userInput.nextLine();
+
     }
 }

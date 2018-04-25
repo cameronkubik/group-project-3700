@@ -1,11 +1,14 @@
 // Print Class
 // Provides classes that make it easy and efficient to print text and data to stdout
+import java.util.Scanner;
 
 public class Printer {
+    // Using Scanner for Getting Input from User
+    static Scanner userInput = new Scanner(System.in);
 
     public static void pr(String output) {
         if(output != null && output != "") {
-            System.out.println(output);
+            System.out.println(output + "\n");
         } else {
             if (Main.devMode) {
                 System.out.println("ERROR: printer received null parameter");
@@ -14,16 +17,28 @@ public class Printer {
     }
 
     public static void displayOpening() {
-        String open = "\n*******************\nWelcome to Cash Stash!\n";
-        System.out.println(open);
+        pr("\n*******************");
+        pr("Welcome to Cash Stash!");
 
         if(Main.devMode) {
-            System.out.println("[Entering in DEV MODE]\n");
+            pr("[Entering in DEV MODE]");
         }
     }
 
     public static void displayClosing() {
-        String close = "\nClosing Cash Stash...\nGoodbye\n*******************\n";
-        System.out.println(close);
+        pr("\nClosing Cash Stash...");
+        pr("*******************");
+    }
+
+    public static String query(String prompt, java.lang.Object type) {
+        pr(prompt);
+        switch(type) {
+            case java.lang.Integer:
+                return userInput.nextInt();
+            case java.lang.Float:
+                return userInput.nextFloat();
+            default: 
+                return userInput.nextLine();
+        }
     }
 }

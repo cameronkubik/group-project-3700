@@ -2,8 +2,13 @@
 
 public class AccountControl implements Controller {
     // Member variables
+
+    public AccountControl () {
+
+    }
     
-    public static void init() {
+    @Override
+    public void init() {
         Printer.pr("AccountControl: Running");
     }
 }

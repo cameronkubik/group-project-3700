@@ -29,6 +29,7 @@ public class Account {
 		this.phoneNumber = phoneNumber;
 		this.ssn = ssn;
 		this.fullName = fullName;
+        this.password = password;
 	}
 
 	/**

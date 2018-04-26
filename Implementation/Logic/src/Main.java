@@ -12,9 +12,12 @@ public class Main {
         Printer.displayOpening();
 
         // WORKING
-        //AccountControl.buildSessionAccount();
-        //boolean canProceed = SessionControl.login();
-        //if(!canProceed) { Printer.displayClosing(); }
+        AccountControl.buildSessionAccount();
+        boolean canProceed = SessionControl.login();
+        if(!canProceed) {
+            Printer.displayClosing();
+            return;
+        }
 
         //TODO session control query nav options
 

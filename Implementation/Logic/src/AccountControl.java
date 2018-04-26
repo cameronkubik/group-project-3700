@@ -45,7 +45,6 @@ public class AccountControl {
     public static boolean verifyCredentials(String username, String password) {
         boolean user = username.equals(currentUser.getUsername());
         boolean pw = password.equals(currentUser.getPassword());
-
         if(user && pw) {
             return true;
         }

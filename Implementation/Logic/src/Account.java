@@ -1,3 +1,4 @@
+//package com.cmk;
 //Account Class
 
 // Table of Contents
@@ -16,11 +17,12 @@ public class Account {
     private String phoneNumber;
     private String ssn;
     private String fullName;
+    private String password;
 
     /**
 	* Default Account constructor
 	*/
-	public Account(String username, String email, String phoneNumber, String ssn, String fullName) {
+	public Account(String username, String password, String email, String phoneNumber, String ssn, String fullName) {
 		//super();
 		this.username = username;
 		this.email = email;
@@ -43,6 +45,22 @@ public class Account {
 	*/
 	public void setUsername(String username) {
 		this.username = username;
+	}
+
+    /**
+	* Returns value of password
+	* @return
+	*/
+	public String getPassword() {
+		return password;
+	}
+
+	/**
+	* Sets new value of password
+	* @param
+	*/
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	/**

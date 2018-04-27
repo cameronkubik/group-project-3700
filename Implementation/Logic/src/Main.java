@@ -22,7 +22,7 @@ public class Main {
         //TODO session control query nav options
 
         // create a budget
-        BudgetControl.creatBudget();
+        //BudgetControl.creatBudget();
 
 
         Printer.displayClosing();

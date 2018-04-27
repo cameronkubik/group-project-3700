@@ -50,8 +50,8 @@ public class Printer {
     }
 
     public static void prForm(String label, String value) {
-        pr(label + ":", 0);
-        pr("\t\t\t\t", 0);
+        pr(label + ": ", 0);
+        pr("\t\t\t", 0);
         pr(value, 1);
     }
 }

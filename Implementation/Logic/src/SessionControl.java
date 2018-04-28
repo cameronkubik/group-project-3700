@@ -12,9 +12,6 @@ public class SessionControl {
 
         activeSession = AccountControl.verifyCredentials(username, password);
 
-        // shortcut for test purposes
-        if(username == "cmk" && password == "test") { activeSession = true;}
-
         if(!activeSession) {
             Printer.pr("Login Failed.", 0);
         }
@@ -25,6 +22,6 @@ public class SessionControl {
         Printer.pr("Please login.", 2);
 
         username = Printer.query("Username:", 1);
-        password = Printer.query("Password:", 1);
+        password = Printer.query("Password:", 2);
     }
 }

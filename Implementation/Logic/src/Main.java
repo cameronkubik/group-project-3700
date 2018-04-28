@@ -22,8 +22,10 @@ public class Main {
         //TODO session control query nav options
 
         // create a budget
-        //BudgetControl.creatBudget();
+        //BudgetControl.createBudget();
 
+        // create a cash flow
+        CashFlowControl.createCashFlow();
 
         Printer.displayClosing();
     }

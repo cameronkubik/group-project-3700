@@ -54,4 +54,11 @@ public class Printer {
         pr("\t\t\t", 0);
         pr(value, 1);
     }
+
+    public static void newlines(int numLines) {
+        while (numLines > 0) {
+            System.out.println("");
+            numLines--;
+        }
+    }
 }

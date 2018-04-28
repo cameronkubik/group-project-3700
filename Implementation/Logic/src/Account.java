@@ -23,7 +23,7 @@ public class Account {
 	* Default Account constructor
 	*/
 	public Account(String username, String password, String email, String phoneNumber, String ssn, String fullName) {
-		//super();
+		super();
 		this.username = username;
 		this.email = email;
 		this.phoneNumber = phoneNumber;

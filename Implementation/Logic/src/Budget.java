@@ -9,6 +9,7 @@ public class Budget {
     private Float expenses;
 
     public Budget(Float _income, Float _expendable, Float _savings) {
+        super();
         this.income = _income;
         this.expendable = _expendable;
         this.savings = _savings;

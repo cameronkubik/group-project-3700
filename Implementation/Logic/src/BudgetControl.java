@@ -7,7 +7,7 @@ public class BudgetControl {
 
     private static Budget budget;
 
-    public static void creatBudget() {
+    public static void createBudget() {
         // Start budget prompt
         Printer.pr("To create a budget, please fill out the following form.", 2);
         //Collect budget data
@@ -38,6 +38,10 @@ public class BudgetControl {
         budget.print();
 
         Printer.pr("\nMonitoring account transactions for Budget quota.", 2);
+    }
+
+    public static Budget getBudget() {
+        return budget;
     }
 
 }

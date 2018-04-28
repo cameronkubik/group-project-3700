@@ -14,18 +14,19 @@ public class Main {
         // WORKING
         AccountControl.buildSessionAccount();
         boolean canProceed = SessionControl.login();
-        if(!canProceed) {
-            Printer.displayClosing();
-            return;
+        while(!canProceed) {
+            canProceed = SessionControl.login();
         }
 
         //TODO session control query nav options
 
         // create a budget
-        //BudgetControl.createBudget();
+        BudgetControl.createBudget();
 
         // create a cash flow
         CashFlowControl.createCashFlow();
+
+        SlippageControl.calculateSlippage();
 
         Printer.displayClosing();
     }

@@ -20,11 +20,12 @@ public class BudgetControl {
         String rawIncome = Printer.query("Monthly Income:", 1);
         Float income = Float.parseFloat(rawIncome);
 
-        String rawExpendable = Printer.query("How much of this income do you want to be expendable?\n", 0);
+        String rawExpendable = Printer.query("How much of this income do you want to be expendable?", 1);
         Float expendableIncome = Float.parseFloat(rawExpendable);
         //TODO error check to make sure values are valid
 
-        String rawSavings = Printer.query("How much do you wish to save each month?\n", 0);
+        String rawSavings = Printer.query("How much do you wish to save each month?", 1);
+        Printer.newlines(1);
         Float savings = Float.parseFloat(rawSavings);
 
         budget = new Budget(income, expendableIncome, savings);
@@ -32,8 +33,9 @@ public class BudgetControl {
 
     private static void displayBudget() {
         String username = AccountControl.getUser().getUsername();
-
-        Printer.pr(username + "'s personal Monthly Budget:", 1);
+        Printer.pr("-----", 0);
+        Printer.pr(username + "'s personal Monthly Budget:", 0);
+        Printer.pr("-----", 1);
 
         budget.print();
 

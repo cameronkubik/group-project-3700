@@ -22,6 +22,7 @@ public class SessionControl {
         Printer.pr("Please login.", 2);
 
         username = Printer.query("Username:", 1);
-        password = Printer.query("Password:", 2);
+        password = Printer.query("Password:", 1);
+        Printer.newlines(1);
     }
 }

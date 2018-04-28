@@ -27,13 +27,14 @@ public class CashFlowControl {
         // attempt to get income through budget
         Budget budget = BudgetControl.getBudget();
         if(budget == null || budget.getIncome() == null) {
-            incomeIn = Float.parseFloat(Printer.query("Monthly income:", 2));
+            incomeIn = Float.parseFloat(Printer.query("Monthly income:", 3));
         } else {
             incomeIn = budget.getIncome();
+            Printer.prForm("Monthly income", incomeIn.toString());
         }
 
         //get other income sources
-        otherIn = Float.parseFloat(Printer.query("Misc. revenue:", 2));
+        otherIn = Float.parseFloat(Printer.query("Misc. revenue:", 4));
         Printer.newlines(1);
     }
 
@@ -63,6 +64,7 @@ public class CashFlowControl {
         Printer.pr(user.getUsername() + "'s Cash Flow", 0);
         Printer.pr(" -----", 1);
         cashFlow.print();
+        Printer.newlines(1);
     }
 
     public static CashFlow getCashFlow() {

@@ -1,0 +1,10 @@
+Link External Account - not really sure of a way to implement this without having a third DB file with some predefined accounts
+Refresh Data - kinda goes hand in hand with link financial account
+
+Export Data - this is not done yet but it will take me like 10 minutes to implement. I'm just going to filter the TransactinsDB file
+              for the current user's transactions, remove the account ID from the row 
+              and save them in a new file on the user's desktop and display a message saying
+              it has been saved in CSV format and to open using a CSV viewer such as excel
+            
+Reports - at least we have something implemented for them so maybe it won't matter but they don't match the use cases because
+          they currently don't make use of any transaction data 

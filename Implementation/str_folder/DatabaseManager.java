@@ -1,7 +1,10 @@
 import java.io.*;
 import java.util.ArrayList;
+import java.util.EnumSet;
 import java.net.URL;
 import java.nio.file.Files;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.*;
 
 public class DatabaseManager {
 	private static File AccountsDB = null;
@@ -147,6 +150,54 @@ public class DatabaseManager {
 			out.write(data.getBytes());
 			closeDB();
 		} catch (IOException e) { }
+	}
+	
+	public static String exportData(int userID) {
+		ArrayList<String> data = loadTransactions(userID);
+		
+		Workbook wb = new HSSFWorkbook();
+        CreationHelper helper = wb.getCreationHelper();
+        Sheet sheet = wb.createSheet("Transactions");
+
+        Row row = sheet.createRow((short) 0);
+        row.createCell(0).setCellValue(helper.createRichTextString("AMOUNT"));
+        row.createCell(1).setCellValue(helper.createRichTextString("NAME"));
+        row.createCell(2).setCellValue(helper.createRichTextString("DATE"));
+        row.createCell(3).setCellValue(helper.createRichTextString("TYPE"));
+        row.createCell(4).setCellValue(helper.createRichTextString("CATEGORY"));
+        
+        int r = 1;
+        for (int i = 0; i < data.size(); i++) {
+        	Row row2 = sheet.createRow((short) r++);
+        	String[] transaction = data.get(i).split(",");
+        	
+        	for (int j = 1; j < transaction.length; j++) {
+        		if (j == transaction.length - 1) {
+        			String category = transaction[j];
+        			
+        			for (Category c : EnumSet.allOf(Category.class)) {
+        	    		if (c.id() == Integer.parseInt(category)) {
+        	    			transaction[j] = c.title();
+        	    		}
+        	    	}
+        		}
+        		
+        		row2.createCell(j-1)
+                	.setCellValue(helper.createRichTextString(transaction[j]));
+        	}
+        }
+
+        try {
+	        File excelFile = new File(System.getProperty("user.home") + File.separator + "Cash Stash Data.xls");
+	        excelFile.createNewFile();
+	        FileOutputStream fileOut = new FileOutputStream(excelFile);
+	        wb.write(fileOut);
+	        fileOut.close();
+	        
+	        return excelFile.getPath();
+        } catch (IOException e) { 
+        	return "ERROR: Please make sure the file isn't currently open and try again!";
+        }
 	}
 	
 }

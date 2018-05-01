@@ -38,7 +38,7 @@ public class CashFlowControl {
         Printer.newlines(1);
     }
 
-    private static void getOutflows() {
+    private static Float getOutflows() {
         Printer.pr("----- Cash Outflows -----", 1);
 
         //get all Outflows
@@ -49,6 +49,8 @@ public class CashFlowControl {
         entertainmentOut = Float.parseFloat(Printer.query("Entertainment:", 2));
 
         Printer.newlines(2);
+        
+        return adminOut + personelOut + transportationOut + residentialOut + entertainmentOut;
     }
 
     private static CashFlow generateCashFlow() {

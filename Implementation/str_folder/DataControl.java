@@ -44,6 +44,7 @@ public class DataControl {
     }
     
     private static void exportData() {
-    	
+    	String filePath = DatabaseManager.exportData(AccountControl.getUser().getID());
+    	Printer.pr("\nExcel file saved at the following location:\n" + filePath, 1);
     }
 }
